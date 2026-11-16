@@ -15,10 +15,11 @@ spec:
         spec:
           containers:
             - name: uma-server
-              image: 493667572687.dkr.ecr.us-east-1.amazonaws.com/uma-server:1.0
+              image: 493667572687.dkr.ecr.us-east-1.amazonaws.com/uma-server:1a8a591760b446df0e3b77d48ee4a96d472a9fc2
               ports:
                 - name: metrics    # lo leera Prometheus en la practica 3.4
                   containerPort: 9100
               resources:
                 requests: { cpu: "250m", memory: "256Mi" }
                 limits:   { cpu: "500m", memory: "512Mi" }
+
