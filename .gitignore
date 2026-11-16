@@ -1,0 +1,9 @@
+__pycache__/
+.pytest_cache/
+key.json
+*.crt
+*.key
+infra/.terraform/
+infra/*.tfstate*
+infra/plan.tfplan
+loadtest/*.csv
