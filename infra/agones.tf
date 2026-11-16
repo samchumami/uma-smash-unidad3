@@ -18,3 +18,24 @@ resource "helm_release" "agones" {
   create_namespace = true
   depends_on       = [module.eks]
 }
+
+# Agrega y quita nodos segun los pods pendientes (practica 3.4)
+resource "helm_release" "cluster_autoscaler" {
+  name       = "cluster-autoscaler"
+  repository = "https://kubernetes.github.io/autoscaler"
+  chart      = "cluster-autoscaler"
+  namespace  = "kube-system"
+  set {
+    name  = "autoDiscovery.clusterName"
+    value = module.eks.cluster_name
+  }
+  set {
+    name  = "awsRegion"
+    value = var.region
+  }
+  set {
+    name  = "extraArgs.scale-down-unneeded-time"
+    value = "3m"
+  }
+  depends_on = [module.eks]
+}
